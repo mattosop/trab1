@@ -49,3 +49,8 @@ return(*pt1);
 \brief função matematica para média e desvio padrão
 */
 
+/*
+\brief função principal
+*/
+main()
+
