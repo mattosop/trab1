@@ -97,4 +97,25 @@ return(*pt1);
 \brief função principal
 */
 main()
+{
+      int selec; 
+      printf("informe a quantidade de numeros que deseja inserir:");
+      scanf("%d,num);
+      printf("para inserir numeros tecle 1:");
+      printf("para ordenar de forma crescente tecle2:");
+      printf("para média dos numeros digitados tecle 3:");
+      printf("para desvio padrão tecle 4:");
+      printf("para sair tecle 0:");
+      scanf("%d/n",selec);
+      switch(selec)
+      {
+            case '1':
+               point(num);
+               break;
+      
+	    default:
+               printf("nenhuma opção selecionada");
+      }
+}
+       
 
