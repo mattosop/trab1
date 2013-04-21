@@ -15,24 +15,65 @@
 \brief função para receber numeros aleatórios
 \param pt é o ponteiro para armazenar os numeros
 */
-int point(num)
+
+int point(int num)
+
+/*
+\ brief esta função recebe um numero determinado de valores
+\ retornando os numeros na ordem digitada
+*/
+
 {
-  int *pt;
+/*
+\brief variaveis locais
+*/
+
+  int pt[20];
   int i;
-  for (i=1;i<20;i++)
+  if (num>20)
+  {
+	num =20;
+  }
+  for (i=1;i<num;i++)
      {
        printf("digite um valor");
-       scanf("%d",*pt[i]);
+       scanf("%d",pt[i]);
      }
-  return(*pt);
+  return(pt);
 }
+
 /*
-\brief função para ordenar os numeros
+\brief função para ordenar os numeros e imprimir 
 */
-int ordena(x)
+int ordena(int x,int num)
 {
-  int *pt1;
-  for (int a=1;a<20;a++)
+  int i, j,aux;
+  vetnum[x];
+  for(i=0;i<num;i++)
+  {
+	for(j=0; j<(num-1);j++)
+	{
+/*
+\brief parte da função responsável por percorrer os numeros digitados
+*/
+		if(vetnum[j] >vetnum[j+1]);
+		{
+			aux = vetnum[j+1];
+			vetnum[j+1] = vetnum[j];
+			vetnum[j] = aux;
+		}
+	}
+  }
+  for(i =0; i< num;i++)
+  {
+	printf("Valor: %d", vetnum[i];
+  }
+
+
+/*
+\brief função para calcular a média
+*/
+
     {
       for(int b =1;b<20;b++)
 	{
@@ -45,9 +86,12 @@ int ordena(x)
     }
 return(*pt1);
 }
+
 /*
-\brief função matematica para média e desvio padrão
+\brief função matematica para desvio padrão
 */
+
+
 
 /*
 \brief função principal
