@@ -16,30 +16,25 @@
 \param pt é o ponteiro para armazenar os numeros
 */
 
-int point(int num)
-
-/*
-\ brief esta função recebe um numero determinado de valores
-\ retornando os numeros na ordem digitada
-*/
-
+int entrada(int num)
 {
 /*
 \brief variaveis locais
 */
 
-  int pt[20];
+  int vetnum[20];
   int i;
   if (num>20)
   {
+	printf("o numero deve ser < = 20. \n");	
 	num =20;
   }
-  for (i=1;i<num;i++)
+  for (i=0;i<num;i++)
      {
        printf("digite um valor");
-       scanf("%d",pt[i]);
+       scanf("%d\n",&vetnum[i]);
      }
-  return(pt);
+
 }
 
 /*
@@ -47,7 +42,7 @@ int point(int num)
 */
 int ordena(int x,int num)
 {
-  int i, j,aux;
+  int i, j,aux,r;
   vetnum[x];
   for(i=0;i<num;i++)
   {
@@ -64,28 +59,15 @@ int ordena(int x,int num)
 		}
 	}
   }
-  for(i =0; i< num;i++)
+  for(r =0; r< num;r++)
   {
-	printf("Valor: %d", vetnum[i];
+	printf("Valor: %d\n", &vetnum[r];
   }
 
 
 /*
 \brief função para calcular a média
 */
-
-    {
-      for(int b =1;b<20;b++)
-	{
-	  if(*pt1[a] > *pt1[b])
-	     {
-		*pt1[a] = *pt1[b];
-	     }
-	}
-      
-    }
-return(*pt1);
-}
 
 /*
 \brief função matematica para desvio padrão
@@ -96,25 +78,45 @@ return(*pt1);
 /*
 \brief função principal
 */
-main()
+int main()
 {
-      int selec; 
-      printf("informe a quantidade de numeros que deseja inserir:");
-      scanf("%d,num);
-      printf("para inserir numeros tecle 1:");
-      printf("para ordenar de forma crescente tecle2:");
-      printf("para média dos numeros digitados tecle 3:");
-      printf("para desvio padrão tecle 4:");
-      printf("para sair tecle 0:");
-      scanf("%d/n",selec);
+      int z,selec,num,vetnum[20]; 
+      printf("informe a quantidade de numeros que deseja inserir:\n");
+      scanf("%d,&num);
+      printf("para inserir numeros tecle 1:\n");
+      printf("para ordenar de forma crescente tecle2:\n");
+      printf("para média dos numeros digitados tecle 3:\n");
+      printf("para desvio padrão tecle 4:\n");
+      printf("para sair tecle 0:\n");
+      scanf("%d/n",&selec);
       switch(selec)
       {
-            case '1':
-               point(num);
-               break;
-      
+            case 1:
+            {
+		 entrada(num);
+              	 break;
+      	    }
+	    
+	    case 2:
+            {
+                 ordena(num, vetnum[num]);
+                 break;
+            }
+
+	    case 3:
+            {
+                 media(num, vetnum[num];
+                 break;
+            }
+
+	    case 4:
+            {
+                 desvio(num,vetnum[num]);
+                 break;
+            }
+
 	    default:
-               printf("nenhuma opção selecionada");
+               printf("nenhuma opcao selecionada\n");
       }
 }
        
