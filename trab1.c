@@ -111,7 +111,7 @@ int ordena(int* vet,int tamanho)
 \brief função para calcular a média
 \param retorna  o valor da média para calculo do desvio padrão em outras funções*/
 
-float media(float* vet, tamanho)
+float media(float* vet, int tamanho)
 {
   float med;
   int i, soma=0, med;
@@ -126,6 +126,7 @@ float media(float* vet, tamanho)
 \brief função matematica para desvio padrão
 */
   float desvioP(int* vet,float  med, int tamanho)
+{
   float desvioPadrao, variancia, *desv, *desvQ, SDQ = 0;
   int a, b, i;
 /*
@@ -134,7 +135,7 @@ float media(float* vet, tamanho)
   for(i=0; i < tamanho; i++)
   {
       desv[i] = vet[i] - med;
-      printf("desvio eh:\n",desv[i]);    
+      printf("desvio eh: %f\n",desv[i]);    
   }
  
 /*
@@ -142,7 +143,7 @@ float media(float* vet, tamanho)
 */
   for(a=0; a < tamanho; a++)
   {
-      desvQ[a] = desv[a] }*desvI[a];
+      desvQ[a] = desv[a] * desvI[a];
       printf("desvio quadratico eh:\n",desvQ[a]);
   }
 /*
@@ -153,16 +154,18 @@ float media(float* vet, tamanho)
   variancia = SDQ/tamanho;
   desvioPadrao = pow(variancia,1/2);
   printf("desvio Padrao eh:\n",desvioPadrao);
- }
+}
 
 /*
 \brief função principal
 */
 int main()
 {
-      printf("para média dos numeros digitados tecle 3:\n");
-      printf("para desvio padrão tecle 4:\n");
-      printf("para sair tecle 0:\n");
+      printf("\n\t\tPROGRAMA PARA COLOCAR NUMEROS EM ORDEM CRESCENTE\n");
+      printf("\n");
+      ler();
+      vetor = digitado();
+
 }
        
 
