@@ -128,8 +128,8 @@ float media(int* vet,int tamanho)
 */
 void desviop(int* vet,float M, int tamanho)
 {
-  	float desvioPadrao, variancia,som, * desv;
-  	int i;
+  	float desvioPadrao, variancia,som;
+  	int i,*desv;
 /*
 \param este for calcula o desvio de cada valor  
 */
@@ -145,10 +145,10 @@ void desviop(int* vet,float M, int tamanho)
 */
 	som =0;
 	for(i=0; i < tamanho; i++)
-     		som+ = pow((vet[i]-M),2);
-	printf("desvio quadratico eh:%f\n",&som);
+     		som =som + ((vet[i]-M)*(vet[i]-M));
+	printf("desvio quadratico eh:%f\n",som);
   	variancia = som/(tamanho-1);
-	printf("variancia = %f\n",&variancia);
+	printf("variancia = %f\n",variancia);
   	desvioPadrao = sqrt(variancia);
   	printf("desvio Padrao eh:%f\n",&desvioPadrao);
 }	
@@ -166,7 +166,7 @@ int main()
 	printf("\nDIGITE A QUANTIDADE DE NUMEROS:\n");
         tamanho = ler();
 	vetor = preenche(tamanho);      	
-
+	printf("%d\n\n",vetor[2]);
 	if(vetor)
 	{
 
