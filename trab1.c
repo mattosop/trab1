@@ -47,12 +47,12 @@ void mostra(int num)
 \param tamanho vai receber a quantidade de numeros digitados
 */
 
-void exibe(int* vetor, int tamanho)
+void exibe(int* vet, int tamanho)
 {
 	int i;
   	printf("\n");
   	for (i=0;i<tamanho;i++)
-	mostra(vetor[i]);
+		mostra(vet[i]);
   	printf("\n\n");
 }
 
@@ -62,7 +62,7 @@ void exibe(int* vetor, int tamanho)
 \param vet[i] recebe os valores digitados na função ler()
 */
 
-void * preenche(int tamanho)
+int* preenche(int tamanho)
 {
   	int *vet, i;
   	vet = (int *)malloc(tamanho * sizeof(int));
@@ -74,26 +74,27 @@ void * preenche(int tamanho)
 	    		vet[i] = ler();
         	}
   	}
+	return vet;
 }
 
 /*
 \brief função para ordenar os numeros e imprimir 
 \param sequencia de for é para percorrer todas as posições do vetor
 */
-void ordena(int *vetor,int tamanho)
+void ordena(int *vet,int tamanho)
 {
   	int v,i, j,aux;
 	printf("ORDENA OS NUMEROS DIGITADOS EM FORMA CRESCENTE \n");
-  	for(i=0;i<tamanho-1;i++)
-	for(j=i+1;j<tamanho;j++)
+  	for(i=1;i<tamanho;i++)
+	for(j=tamanho-1;j>=i;--j)
 /*
 \brief parte da função responsável por testar os numeros digitados
 */
-		if(vetor[i] > vetor[j])
+		if(vet[j-1] > vet[j])
 		{
-	   		aux = vetor[i];
-	   		vetor[i] = vetor[j];
-	   		vetor[j] = aux;
+	   		aux = vet[j-1];
+	   		vet[j-1] = vet[j];
+	   		vet[j] = aux;
 		}
   	printf("\n\t\tNUMEROS ORDENADOS\n\n");
 /*
@@ -101,7 +102,7 @@ void ordena(int *vetor,int tamanho)
 */
   	for(v =0; v< tamanho;v++)
   	{
-		printf(" %d\n", vetor[v]);
+		printf(" %d\n", vet[v]);
   	}
 
 }
@@ -111,12 +112,12 @@ void ordena(int *vetor,int tamanho)
 \param retorna  o valor da média para calculo do desvio padrão em outras funções
 \param M é a media dos valores digitados*/
 
-float media(int* vetor,int tamanho)
+float media(int* vet,int tamanho)
 {
-  	float M;
-  	int i, soma=0;
+  	float M,soma=0;
+  	int i;
   	for(i=0; i< tamanho; i++)
-      		soma = soma+vetor[i];
+      		soma+=vet[i];
   	M = soma/tamanho;
   	printf("media eh: %f\n", M); 
   	return M; 
@@ -125,35 +126,31 @@ float media(int* vetor,int tamanho)
 /*
 \brief função matematica para desvio padrão
 */
-void desvioP(int* vetor,float M, int tamanho)
+void desviop(int* vet,float M, int tamanho)
 {
-  	float desvioPadrao, variancia, *desv, *desvQ, SDQ = 0;
-  	int a, b, i;
+  	float desvioPadrao, variancia,som, * desv;
+  	int i;
 /*
 \param este for calcula o desvio de cada valor  
 */
   	for(i=0; i < tamanho; i++)
   	{
-      		desv[i] = vetor[i] - M;
-      		printf("desvio eh: %f\n",desv[i]);    
+      		printf("%f\n\n",vet[i]);
+		desv[i] = vet[i] - M;
+      		printf("desvio do numero digitado %d eh: %f\n",i,desv[i]);    
   	}
  
 /*
 \param laço for responsável pelo calculo do desvio quadrático 
 */
-	for(a=0; a < tamanho; a++)
-  	{
-      		desvQ[a] = desv[a] * desv[a];
-      		printf("desvio quadratico eh:\n",desvQ[a]);
-  	}
-/*
-\param laço for responsável pelo calculo do desvio padrão
-*/
-  	for(b=0; b < tamanho; b++)
-      		SDQ = SDQ +desvQ[b];
-  	variancia = SDQ/tamanho;
-  	desvioPadrao = pow(variancia,1/2);
-  	printf("desvio Padrao eh:\n",desvioPadrao);
+	som =0;
+	for(i=0; i < tamanho; i++)
+     		som+ = pow((vet[i]-M),2);
+	printf("desvio quadratico eh:%f\n",&som);
+  	variancia = som/(tamanho-1);
+	printf("variancia = %f\n",&variancia);
+  	desvioPadrao = sqrt(variancia);
+  	printf("desvio Padrao eh:%f\n",&desvioPadrao);
 }	
 
 /*
@@ -161,20 +158,26 @@ void desvioP(int* vetor,float M, int tamanho)
 */
 int main()
 {
-	int M, *vetor, *vetorNovo, tamanho;
+	int *vetor,v,  tamanho;
+	float DP, med;
 	
 	printf("\n\t\tPROGRAMA PARA COLOCAR NUMEROS EM ORDEM CRESCENTE\n");
       	printf("\n");
 	printf("\nDIGITE A QUANTIDADE DE NUMEROS:\n");
         tamanho = ler();
 	vetor = preenche(tamanho);      	
-	if (vetor)
+
+	if(vetor)
 	{
-		printf("\nesteve aqui");
+
 		exibe(vetor,tamanho);
-		free (vetor);
 	}
        	else
 		printf("\nNAO EH POSSIVEL GERAR NUMEROS");
+
+	ordena(vetor, tamanho);
+	med = media(vetor,tamanho);
+	desviop(vetor,med,tamanho);
+
 }
 
