@@ -178,6 +178,6 @@ int main()
 	ordena(vetor, tamanho);
 	med = media(vetor,tamanho);
 	desviop(vetor,med,tamanho);
-
 }
+
 
